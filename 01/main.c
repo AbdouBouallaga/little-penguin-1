@@ -1,13 +1,11 @@
 #include <linux/init.h>
 #include <linux/module.h>
-#include <linux/uaccess.h>
-#include <linux/fs.h>
-#include <linux/proc_fs.h>
-
+#include <linux/kernel.h>
 
 MODULE_AUTHOR("babdelka");
 MODULE_DESCRIPTION("Hello world module");
 MODULE_LICENSE("GPL");
+MODULE_VERSION("0.1");
 
 // Custom init and exit methods
 static int __init custom_init(void) {
