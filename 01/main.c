@@ -9,12 +9,12 @@ MODULE_VERSION("0.1");
 
 // Custom init and exit methods
 static int __init custom_init(void) {
-    printk(KERN_INFO "Hello world !");
+    printk(KERN_INFO "Hello world !\n");
     return 0;
 }
 
 static void __exit custom_exit(void) {
-    printk(KERN_INFO "Cleaning up module.");
+    printk(KERN_INFO "Cleaning up module.\n");
 }
 
 module_init(custom_init);
