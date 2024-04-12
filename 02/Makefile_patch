@@ -1,0 +1,22 @@
+commit 0fdcdf7e40536fabde73b0aced441ac37d12f6f4 (HEAD -> master)
+Author: AbdelkaderBouallaga <abdou.bouallaga@live.fr>
+Date:   Fri Apr 12 20:56:35 2024 +0000
+
+    Edit EXTRAVERSION
+    
+    Signed-off-by: AbdelkaderBouallaga <abdou.bouallaga@live.fr>
+
+diff --git a/Makefile b/Makefile
+index e1bf12891..c8f2cd473 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@
+ VERSION = 6
+ PATCHLEVEL = 9
+ SUBLEVEL = 0
+-EXTRAVERSION = -rc3
++EXTRAVERSION = -thor_kernel
+ NAME = Hurr durr I'ma ninja sloth
+
+ # *DOCUMENTATION*
+
