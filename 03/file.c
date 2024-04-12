@@ -4,6 +4,11 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 
+MODULE_AUTHOR("babdelka");
+MODULE_DESCRIPTION("Module to fix");
+MODULE_LICENSE("GPL");
+MODULE_VERSION("0.1");
+
 int do_work(int *my_int, int retval)
 {
 	int x;
@@ -22,7 +27,7 @@ int do_work(int *my_int, int retval)
 	return 1;
 }
 
-int my_init(void)
+static int __init my_init(void)
 {
 	int x;
 
@@ -31,7 +36,7 @@ int my_init(void)
 	return x;
 }
 
-void my_exit(void)
+static void __exit my_exit(void)
 {
 }
 
