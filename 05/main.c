@@ -42,15 +42,17 @@ static ssize_t my_read(struct file *file, char *buffer, size_t length, loff_t *o
 }
 
 static ssize_t my_write(struct file *file, const char *buffer, size_t length, loff_t *offset) {
-    int local_length = length;
     
+	char local_buffer[LOGIN_LEN];
     if (length != LOGIN_LEN) {
         return -EINVAL; // Invalid argument
     }
-    if (strncmp(buffer, LOGIN, LOGIN_LEN) != 0) {
+    if (copy_from_user(local_buffer, buffer, length))
+		return -EIO;
+    if (memcmp(local_buffer, LOGIN, LOGIN_LEN) != 0) {
         return -EINVAL; // Invalid argument
     }
-    return local_length;
+    return length;
 }
 
 static struct file_operations fops = {

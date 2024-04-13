@@ -1,0 +1,22 @@
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/05$ sudo dmesg -C
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/05$ sudo ./a.out 
+res - babdelka | 8
+res - 8
+res - -1
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/05$ sudo dmesg
+[18404.155711] Device opened
+[18404.156307] Device closed
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/05$
+
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/05$ ls /dev/
+autofs           disk      hidraw1       loop2   null    shm     tty12  tty22  tty32  tty42  tty52  tty62    ttyS13  ttyS23  ttyS5      userio  vcsa3  vda           vport3p2
+block            dm-0      hidraw2       loop3   port    snd     tty13  tty23  tty33  tty43  tty53  tty63    ttyS14  ttyS24  ttyS6      vcs     vcsa4  vda1          zero
+bsg              dma_heap  hugepages     loop4   ppp     sr0     tty14  tty24  tty34  tty44  tty54  tty7     ttyS15  ttyS25  ttyS7      vcs1    vcsa5  vda2          zfs
+btrfs-control    dri       hwrng         loop5   psaux   stderr  tty15  tty25  tty35  tty45  tty55  tty8     ttyS16  ttyS26  ttyS8      vcs2    vcsa6  vda3
+bus              ecryptfs  initctl       loop6   ptmx    stdin   tty16  tty26  tty36  tty46  tty56  tty9     ttyS17  ttyS27  ttyS9      vcs3    vcsu   vfio
+cdrom            fb0       input         loop7   pts     stdout  tty17  tty27  tty37  tty47  tty57  ttyAMA0  ttyS18  ttyS28  ttyprintk  vcs4    vcsu1  vga_arbiter
+char             fd        kmsg          loop8   random  tty     tty18  tty28  tty38  tty48  tty58  ttyS0    ttyS19  ttyS29  ubuntu-vg  vcs5    vcsu2  vhci
+console          fortytwo  log           mapper  rfkill  tty0    tty19  tty29  tty39  tty49  tty59  ttyS1    ttyS2   ttyS3   udmabuf    vcs6    vcsu3  vhost-net
+core             full      loop-control  mem     rtc     tty1    tty2   tty3   tty4   tty5   tty6   ttyS10   ttyS20  ttyS30  uhid       vcsa    vcsu4  vhost-vsock
+cpu_dma_latency  fuse      loop0         mqueue  rtc0    tty10   tty20  tty30  tty40  tty50  tty60  ttyS11   ttyS21  ttyS31  uinput     vcsa1   vcsu5  virtio-ports
+cuse             hidraw0   loop1         net     sg0     tty11   tty21  tty31  tty41  tty51  tty61  ttyS12   ttyS22  ttyS4   urandom    vcsa2   vcsu6  vport3p1 
