@@ -10,7 +10,7 @@ MODULE_DESCRIPTION("Debugfs Module");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
-#define DEVICE_NAME "fortytwo";
+#define DEVICE_NAME "fortytwo"
 #define MAX_FOO_LEN  PAGE_SIZE
 #define LOGIN	"babdelka"
 #define LOGIN_LEN	8
@@ -19,7 +19,7 @@ static struct dentry *fortytwo_dir;
 static struct dentry *id_file;
 static struct dentry *jiffies_file;
 static struct dentry *foo_file;
-f
+
 static u32 foo_value;
 static DEFINE_MUTEX(foo_mutex);
 
