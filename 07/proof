@@ -1,0 +1,74 @@
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/07$ make
+make -C /lib/modules/5.15.0-102-generic/build M=/home/ubuntu/Desktop/git/little-penguin-1/07 modules
+make[1]: Entering directory '/usr/src/linux-headers-5.15.0-102-generic'
+  CC [M]  /home/ubuntu/Desktop/git/little-penguin-1/07/main.o
+  MODPOST /home/ubuntu/Desktop/git/little-penguin-1/07/Module.symvers
+  CC [M]  /home/ubuntu/Desktop/git/little-penguin-1/07/main.mod.o
+  LD [M]  /home/ubuntu/Desktop/git/little-penguin-1/07/main.ko
+  BTF [M] /home/ubuntu/Desktop/git/little-penguin-1/07/main.ko
+make[1]: Leaving directory '/usr/src/linux-headers-5.15.0-102-generic'
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/07$ sudo insmod main.ko 
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/07$ sudo ./a.out 
+----- id -----
+res - -1
+res - 8
+res - ba | 2
+res - ba | 2
+res - babdelka | 8
+res - babdelka | 8
+
+----- jiffies -----
+jiffies - 4294931592 | res - 1
+jiffies - 4294931843 | res - 1
+jiffies - 4294932093 | res - 1
+
+----- foo -----
+foo - write res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+foo - read res - 8, babdelka
+foo - write res - 8, babdelka
+foo - write res - 8, 42School
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/07$ 
+
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/07$ sudo ls -la /sys/kernel/debug/fortytwo/
+total 0
+drwxr-xr-x  2 root root 0 Apr 13 23:48 .
+drwx------ 39 root root 0 Jan  1  1970 ..
+-rw-r--r--  1 root root 0 Apr 13 23:48 foo
+-rw-rw-rw-  1 root root 0 Apr 13 23:48 id
+-r--r--r--  1 root root 0 Apr 13 23:48 jiffies
+ubuntu@ubuntu:~/Desktop/git/little-penguin-1/07$ 
