@@ -10,7 +10,7 @@ MODULE_DESCRIPTION("Debugfs Module");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
-#define DEVICE_NAME "fortytwo"
+#define DEVICE_NAME "fortytwo";
 #define MAX_FOO_LEN  PAGE_SIZE
 #define LOGIN	"babdelka"
 #define LOGIN_LEN	8
