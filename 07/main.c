@@ -10,7 +10,6 @@ MODULE_DESCRIPTION("Debugfs Module");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
-#define DEVICE_NAME "fortytwo"
 #define MAX_FOO_LEN  PAGE_SIZE
 #define LOGIN	"babdelka"
 #define LOGIN_LEN	8
@@ -73,7 +72,7 @@ static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_
 static ssize_t foo_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
     mutex_lock(&foo_mutex);
-    ret = simple_write_to_buffer(&foo_value, sizeof(foo_value), ppos, buf, count);
+    ret = simple_write_to_buffer(&foo_value, MAX_FOO_LEN, ppos, buf, count);
     mutex_unlock(&foo_mutex);
     return ret;
 }
