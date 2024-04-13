@@ -41,13 +41,13 @@ static ssize_t id_read(struct file *file, char __user *buffer, size_t length, lo
 
 static ssize_t id_write(struct file *file, const char __user *buffer, size_t length, loff_t *ppos) {
     
-    char local_buffer[MAX_FOO_LEN];
-    if (length != MAX_FOO_LEN) {
+    char local_buffer[LOGIN_LEN];
+    if (length != LOGIN_LEN) {
         return -EINVAL; // Invalid argument
     }
     if (copy_from_user(local_buffer, buffer, length))
 		return -EIO;
-    if (memcmp(local_buffer, LOGIN, MAX_FOO_LEN) != 0) {
+    if (memcmp(local_buffer, LOGIN, LOGIN_LEN) != 0) {
         return -EINVAL; // Invalid argument
     }
     return length;
