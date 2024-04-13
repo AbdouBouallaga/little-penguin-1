@@ -1,5 +1,5 @@
 # /etc/udev/rules.d/99-keyboard-module.rules
 # This file is used to load the keyboard module when the keyboard is plugged in
 
-ACTION=="add", SUBSYSTEM=="usb", RUN+="/usr/sbin/insmod /root/Little-penguin-1/04/main.ko"
-ACTION=="remove", SUBSYSTEM=="usb", RUN+="/usr/sbin/rmmod /root/Little-penguin-1/04/main.ko"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{ID_INPUT_KEYBOARD}=="1", RUN+="/usr/sbin/insmod /root/Little-penguin-1/04/main.ko"
+ACTION=="remove", SUBSYSTEM=="usb", ATTR{ID_INPUT_KEYBOARD}=="1", RUN+="/usr/sbin/rmmod /root/Little-penguin-1/04/main.ko"
