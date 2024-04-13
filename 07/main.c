@@ -22,7 +22,7 @@ static struct dentry *foo_file;
 static u32 foo_value;
 static DEFINE_MUTEX(foo_mutex);
 
-static ssize_t id_read(struct file *file, char __user *buf, size_t length, loff_t *ppos) {
+static ssize_t id_read(struct file *file, char __user *buffer, size_t length, loff_t *ppos) {
     int bytes_to_copy;
 
     if (LOGIN_LEN < length)
@@ -39,7 +39,7 @@ static ssize_t id_read(struct file *file, char __user *buf, size_t length, loff_
     return bytes_to_copy;
 }
 
-static ssize_t id_write(struct file *file, const char __user *buf, size_t length, loff_t *ppos) {
+static ssize_t id_write(struct file *file, const char __user *buffer, size_t length, loff_t *ppos) {
     
     char local_buffer[MAX_FOO_LEN];
     if (length != MAX_FOO_LEN) {
