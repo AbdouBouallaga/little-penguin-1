@@ -49,7 +49,6 @@ static ssize_t my_write(struct file *file, const char *buffer, size_t length, lo
         return -EINVAL; // Invalid argument
     }
     return length;
-    return length;
 }
 
 static struct file_operations fops = {
