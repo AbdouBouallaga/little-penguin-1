@@ -1,5 +1,0 @@
-# /etc/udev/rules.d/1-keyboard-module.rules
-# This file is used to load the keyboard module when the keyboard is plugged in
-
-ACTION=="add", SUBSYSTEM=="usb", ATTR{bInterfaceProtocol}=="01", RUN+="/usr/sbin/insmod /home/ubuntu/Desktop/git/little-penguin-1/04/main.ko"
-ACTION=="remove", SUBSYSTEM=="usb", ATTR{bInterfaceProtocol}=="01", RUN+="/usr/sbin/rmmod /home/ubuntu/Desktop/git/little-penguin-1/04/main.ko"
