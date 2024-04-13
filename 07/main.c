@@ -64,7 +64,7 @@ static ssize_t jiffies_read(struct file *file, char __user *buf, size_t count, l
 static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
     mutex_lock(&foo_mutex);
-    ret = simple_read_from_buffer(buf, count, ppos, &foo_value, sizeof(foo_value));
+    ret = simple_read_from_buffer(buf, count, ppos, &foo_value, PAGE_SIZE);
     mutex_unlock(&foo_mutex);
     return ret;
 }
@@ -72,7 +72,7 @@ static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_
 static ssize_t foo_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
     mutex_lock(&foo_mutex);
-    ret = simple_write_to_buffer(&foo_value, MAX_FOO_LEN, ppos, buf, count);
+    ret = simple_write_to_buffer(&foo_value, PAGE_SIZE, ppos, buf, count);
     mutex_unlock(&foo_mutex);
     return ret;
 }
