@@ -24,7 +24,14 @@ static int my_release(struct inode *inode, struct file *file) {
 }
 
 static ssize_t my_read(struct file *file, char *buffer, size_t length, loff_t *offset) {
-    int bytes_to_copy = min(LOGIN_LEN, length);
+    
+    int bytes_to_copy;
+
+    if (LOGIN_LEN < length)
+        bytes_to_copy = LOGIN_LEN;
+    else 
+        bytes_to_copy = length;
+
     if (bytes_to_copy <= 0) {
         return 0; // No data to read
     }
