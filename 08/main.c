@@ -12,14 +12,14 @@ MODULE_DESCRIPTION("Module to fix");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
-static ssize_t	myfd_read(struct file *fp, char __user *user,
+static ssize_t	m_rd(struct file *fp, char __user *user,
 				size_t size, loff_t *offs);
 static ssize_t	myfd_write(struct file *fp, const char __user *user,
 				size_t size, loff_t *offs);
 
 static const struct file_operations	myfd_fops = {
 	.owner	= THIS_MODULE,
-	.read	= &myfd_read,
+	.read	= &m_rd,
 	.write	= &myfd_write
 };
 
@@ -31,7 +31,7 @@ static struct miscdevice	myfd_device = {
 
 static char	str[PAGE_SIZE];
 
-ssize_t	myfd_read(struct file *fp, char __user *user, size_t size, loff_t *ofs)
+ssize_t	m_rd(struct file *fp, char __user *user, size_t size, loff_t *ofs)
 {
 	size_t	i;
 	size_t	j;
