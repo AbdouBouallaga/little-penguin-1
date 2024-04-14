@@ -10,7 +10,6 @@ MODULE_DESCRIPTION("Debugfs Module");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
-#define MAX_FOO_LEN  PAGE_SIZE
 #define LOGIN	"babdelka"
 #define LOGIN_LEN	8
 
@@ -63,6 +62,9 @@ static ssize_t jiffies_read(struct file *file, char __user *buf, size_t count, l
 
 static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
+    if (count > MAX_FOO_LEN) {
+        return -EINVAL;
+    }
     mutex_lock(&foo_mutex);
     ret = simple_read_from_buffer(buf, count, ppos, &foo_value, PAGE_SIZE);
     mutex_unlock(&foo_mutex);
@@ -71,13 +73,11 @@ static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_
 
 static ssize_t foo_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
-    unsigned int len;
-    len = strlen(buf);
-    if (len > MAX_FOO_LEN) {
+    if (count > MAX_FOO_LEN) {
         return -EINVAL;
     }
     mutex_lock(&foo_mutex);
-    ret = simple_write_to_buffer(&foo_value, len, ppos, buf, count);
+    ret = simple_write_to_buffer(&foo_value, PAGE_SIZE, ppos, buf, count);
     mutex_unlock(&foo_mutex);
     return ret;
 }
