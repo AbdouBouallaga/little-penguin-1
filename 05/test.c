@@ -15,7 +15,7 @@ int	main(void)
 
 	res = read(fd, name, 8);
 	printf("res - %s | %d\n", name, res);
-
+	strlcpy(name, "babdelka", 8);
 	
 	res = write(fd, "babdelka", 8);
 	printf("res - %d\n", res);

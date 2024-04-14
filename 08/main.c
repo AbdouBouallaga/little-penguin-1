@@ -31,23 +31,31 @@ static struct miscdevice	myfd_device = {
 
 static char	str[PAGE_SIZE];
 
+void reverseString(char *str) {
+    int length = strlen(str);
+    int start = 0;
+    int end = length - 1;
+
+    while (start < end) {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+
+        start++;
+        end--;
+    }
+}
+
 ssize_t	m_rd(struct file *fp, char __user *user, size_t size, loff_t *ofs)
 {
 	size_t	i;
 	size_t	j;
 	int	    status;
-	char	*tmp;
 
 	if (strlen(str) == 0)
 		return 0;
-	tmp = kmalloc(sizeof(char) * (strlen(str) + 1), GFP_KERNEL);
-	if (!tmp)
-		return -ENOMEM;
-	for (i = 0, j = strlen(str) - 1; j != 0; --j, ++i)
-		tmp[i] = str[j];
-	tmp[i++] = str[j--];
-	tmp[i] = 0x0;
-	status = simple_read_from_buffer(user, size, ofs, tmp, i);
+	reverseString(str);
+	status = simple_read_from_buffer(user, size, ofs, str, i);
 	kfree(tmp);
 	return status;
 }
