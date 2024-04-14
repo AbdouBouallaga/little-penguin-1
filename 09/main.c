@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mymounts.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vismaily <nenie_iri@mail.ru>               +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 18:57:03 by vismaily          #+#    #+#             */
-/*   Updated: 2023/11/04 19:30:11 by vismaily         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <linux/init.h>
 #include <linux/module.h>
@@ -17,7 +6,7 @@
 #include <linux/seq_file.h>
 #include <linux/list.h>
 #include <linux/nsproxy.h>
-#include <../fs/mount.h>
+#include <linux/mount.h>
 
 MODULE_AUTHOR("babdelka");
 MODULE_DESCRIPTION("List mount points on the system to  /proc/mymounts file.");
