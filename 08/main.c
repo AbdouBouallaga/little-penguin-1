@@ -54,7 +54,7 @@ ssize_t	m_rd(struct file *fp, char __user *user, size_t size, loff_t *ofs)
 	if (strlen(str) == 0)
 		return 0;
 	reverseString(str);
-    if (copy_to_user(buffer, str, size) != 0) {
+    if (copy_to_user(user, str, size) != 0) {
         return -EFAULT; // Error copying data to user space
     }
 	// status = simple_read_from_buffer(user, size, ofs, str, i);
