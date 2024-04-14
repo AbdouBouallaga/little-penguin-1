@@ -10,7 +10,7 @@
 #include <linux/ns_common.h>
 #include <linux/poll.h>
 #include <linux/mnt_namespace.h>
-#include <../fs/mount.h>
+#include <linux/fs.h>
 
 
 static struct proc_dir_entry *entry;
