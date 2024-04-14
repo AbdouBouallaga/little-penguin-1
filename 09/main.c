@@ -57,7 +57,7 @@ static int mounts_open(struct inode *i, struct file *f)
 	return single_open(f, &seq_mounts_show, NULL);
 }
 
-const static struct file_operations mounts_operations = {
+const static struct proc_ops mounts_operazions = {
 	.open = mounts_open,
 	.read = seq_read,
 };
@@ -67,7 +67,7 @@ static struct proc_dir_entry *mount_dir;
 static int __init init_lmodule(void)
 {
 	printk(KERN_INFO "Hello world!\n");
-	mount_dir = proc_create("mymounts", 0666, NULL, &mounts_operations);
+	mount_dir = proc_create("mymounts", 0666, NULL, &mounts_operazions);
 	return 0;
 }
 
