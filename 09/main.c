@@ -1,76 +1,63 @@
-#include <linux/init.h>
-#include <linux/kernel.h>
-#include <linux/module.h>
-#include <linux/fs.h>
-#include <linux/mount.h>
-#include <linux/proc_fs.h>
-#include <linux/seq_file.h>
-#include <linux/spinlock.h>
-#include <linux/nsproxy.h>
-#include <linux/ns_common.h>
-#include <linux/poll.h>
-#include <linux/mnt_namespace.h>
-#include <linux/fs.h>
+#include <linux/version.h>
+#include <linux/module.h>    // included for all kernel modules
+#include <linux/kernel.h>    // included for KERN_INFO
+#include <linux/init.h>      // included for __init and __exit macros
 
+#include <linux/proc_fs.h>   // file operations
+#include <linux/seq_file.h>  // seq_read, ...
 
-static struct proc_dir_entry *entry;
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("babdelka");
+MODULE_DESCRIPTION("idiota");
 
-static int mymounts_proc_show(struct seq_file* m, void* v)
-{
-    struct      mount* mnt;
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,6,0)
+#define HAVE_PROC_OPS
+#endif
 
-    list_for_each_entry(mnt, &current->nsproxy->mnt_ns->list, mnt_list) {
-       	struct path mnt_path = { .dentry = mnt->mnt.mnt_root, .mnt = &mnt->mnt };
-        struct super_block *sb = mnt_path.dentry->d_sb;
+static int mymounts_show(struct seq_file *m, void *v);
 
-        if (!strcmp(mnt->mnt_devname, "rootfs"))
-                continue ;
+static int mymounts_open(struct inode *inode, struct  file *file);
 
-        if (sb->s_op->show_devname)
-                sb->s_op->show_devname(m, mnt_path.dentry);
-        else
-                seq_puts(m, mnt->mnt_devname ? mnt->mnt_devname : "none");
-        seq_putc(m, ' ');
-       	seq_path(m, &mnt_path, " \t\n\\");
-        seq_putc(m, '\n');
-    }
-    return 0;
-}
-
-static int mymounts_proc_open(struct inode* inode, struct file* file)
-{
-    return single_open(file, mymounts_proc_show, NULL);
-}
-
-static const struct proc_ops mymounts_proc_fops = {
-    .proc_open = mymounts_proc_open,
-    .proc_read = seq_read,
-    .proc_lseek = seq_lseek,
-    .proc_release = single_release,
+#ifdef HAVE_PROC_OPS
+static const struct proc_ops mymounts_ops = {
+  .proc_open = mymounts_open,
+  .proc_read = seq_read,
+  .proc_lseek = seq_lseek,
+  .proc_release = single_release,
 };
+#else
+static const struct file_operations mymounts_ops = {
+  .owner = THIS_MODULE,
+  .open = mymounts_open,
+  .read = seq_read,
+  .llseek = seq_lseek,
+  .release = single_release,
+};
+#endif
 
-static int __init mymounts_init(void)
-{
-    entry = proc_create("mymounts", 0, NULL, &mymounts_proc_fops);
-    if (entry == NULL) {
-        printk(KERN_ERR "mymounts_module: failed to create /proc/mymounts file\n");
-        return -ENOMEM;
-    }
 
-    printk(KERN_INFO "mymounts_module: INSERTED\n");
-    return 0;
+static int mymounts_show(struct seq_file *m, void *v) {
+ here:
+  seq_printf(m, "mymounts location: 0x%lx\n", (unsigned long)&&here);
+  return 0;
 }
 
-static void __exit mymounts_exit(void)
-{
-    proc_remove(entry);
-    printk(KERN_INFO "mymounts_module: REMOVED\n");
+static int mymounts_open(struct inode *inode, struct  file *file) {
+  return single_open(file, mymounts_show, NULL);
+}
+
+
+static int __init mymounts_init(void) {
+  proc_create("mymounts", 0, NULL, &mymounts_ops);
+  printk(KERN_INFO "mymounts is mounted\n");
+
+  return 0;
+}
+
+static void __exit mymounts_cleanup(void) {
+  remove_proc_entry("mymounts", NULL);
+  printk(KERN_INFO "mymounts removed\n");
 }
 
 module_init(mymounts_init);
-module_exit(mymounts_exit);
-
-MODULE_AUTHOR("babdelka");
-MODULE_DESCRIPTION("List mount points on the system to  /proc/mymounts file.");
-MODULE_VERSION("0.0.0.0.0.0.1");
-MODULE_LICENSE("GPL");
+module_exit(mymounts_cleanup);
