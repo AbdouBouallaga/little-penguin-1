@@ -31,7 +31,7 @@ static struct miscdevice	myfd_device = {
 
 static char	str[PAGE_SIZE];
 
-ssize_t	myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
+ssize_t	myfd_read(struct file *fp, char __user *user, size_t size, loff_t *ofs)
 {
 	size_t	i;
 	size_t	j;
@@ -47,7 +47,7 @@ ssize_t	myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
 		tmp[i] = str[j];
 	tmp[i++] = str[j--];
 	tmp[i] = 0x0;
-	status = simple_read_from_buffer(user, size, offs, tmp, i);
+	status = simple_read_from_buffer(user, size, ofs, tmp, i);
 	kfree(tmp);
 	return status;
 }
