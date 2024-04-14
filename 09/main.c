@@ -6,7 +6,7 @@
 #include <linux/seq_file.h>
 #include <linux/list.h>
 #include <linux/nsproxy.h>
-#include <linux/mount.h>
+#include "mount.h"
 
 MODULE_AUTHOR("babdelka");
 MODULE_DESCRIPTION("List mount points on the system to  /proc/mymounts file.");
