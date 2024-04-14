@@ -129,7 +129,14 @@ static int __init custom_init(void) {
 }
 
 static void __exit custom_exit(void) {
-    debugfs_remove_recursive(fortytwo_dir);
+    if (foo_file)
+        debugfs_remove(foo_file);
+    if (jiffies_file)
+        debugfs_remove(jiffies_file);
+    if (id_file)
+        debugfs_remove(id_file);
+    if (fortytwo_dir)
+        debugfs_remove_recursive(fortytwo_dir);
     printk(KERN_INFO "Debugfs subdirectory 'fortytwo' removed\n");
 }
 
