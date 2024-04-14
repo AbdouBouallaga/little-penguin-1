@@ -129,6 +129,9 @@ static int __init custom_init(void) {
 }
 
 static void __exit custom_exit(void) {
+    foo_value = 0;
+    mutex_destroy(&foo_mutex);
+    printk(KERN_INFO "Content of the files deleted\n");
     if (foo_file)
         debugfs_remove(foo_file);
     if (jiffies_file)
