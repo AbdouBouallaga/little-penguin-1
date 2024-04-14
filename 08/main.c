@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
-#include <linux/module.h>
-#include <linux/kernel.h>
-#include <linux/init.h>
-#include <linux/miscdevice.h>
-#include <linux/fs.h>
-#include <linux/slab.h>
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+ #include <linux/init.h>
+ #include <linux/miscdevice.h>
+ #include <linux/fs.h>
+ #include <linux/slab.h>
 
 MODULE_AUTHOR("babdelka");
 MODULE_DESCRIPTION("Module to fix");
