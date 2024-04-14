@@ -63,8 +63,6 @@ static ssize_t jiffies_read(struct file *file, char __user *buf, size_t count, l
 
 static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
-    unsigned int len;
-    len = strlen(foo_value);
     mutex_lock(&foo_mutex);
     ret = simple_read_from_buffer(buf, count, ppos, &foo_value, PAGE_SIZE);
     mutex_unlock(&foo_mutex);
