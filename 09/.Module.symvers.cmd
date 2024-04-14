@@ -1,1 +1,0 @@
-cmd_/home/ubuntu/Desktop/git/little-penguin-1/09/Module.symvers := sed 's/\.ko$$/\.o/' /home/ubuntu/Desktop/git/little-penguin-1/09/modules.order | scripts/mod/modpost -m -a  -o /home/ubuntu/Desktop/git/little-penguin-1/09/Module.symvers -e -i Module.symvers   -T -
