@@ -62,7 +62,7 @@ static ssize_t jiffies_read(struct file *file, char __user *buf, size_t count, l
 
 static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
-    if (count > MAX_FOO_LEN) {
+    if (count > PAGE_SIZE) {
         return -EINVAL;
     }
     mutex_lock(&foo_mutex);
@@ -73,7 +73,7 @@ static ssize_t foo_read(struct file *file, char __user *buf, size_t count, loff_
 
 static ssize_t foo_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos) {
     ssize_t ret;
-    if (count > MAX_FOO_LEN) {
+    if (count > PAGE_SIZE) {
         return -EINVAL;
     }
     mutex_lock(&foo_mutex);
