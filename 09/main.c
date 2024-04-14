@@ -64,21 +64,21 @@ const static struct file_operations mounts_operations = {
 
 static struct proc_dir_entry *mount_dir;
 
-static int __init init_module(void)
+static int __init init_lmodule(void)
 {
 	printk(KERN_INFO "Hello world!\n");
 	mount_dir = proc_create("mymounts", 0666, NULL, &mounts_operations);
 	return 0;
 }
 
-static void __exit cleanup_module(void)
+static void __exit cleanup_lmodule(void)
 {
 	printk(KERN_INFO "Cleaning up module.\n");
 	proc_remove(mount_dir);
 }
 
-module_init(init_module);
-module_exit(cleanup_module);
+module_init(init_lmodule);
+module_exit(cleanup_lmodule);
 
 MODULE_AUTHOR("babdelka");
 MODULE_DESCRIPTION("List mount points on the system to  /proc/mymounts file.");
