@@ -56,7 +56,6 @@ ssize_t	m_rd(struct file *fp, char __user *user, size_t size, loff_t *ofs)
 		return 0;
 	reverseString(str);
 	status = simple_read_from_buffer(user, size, ofs, str, i);
-	kfree(tmp);
 	return status;
 }
 
